@@ -69,7 +69,7 @@ exports.login = (req, res) =>{
     }
 
     dB.query('SELECT * FROM tblLogin WHERE Username = ?', [username], async (error, results) => {
-  
+        
         if(!(await bcrypt.compare(password, results[0].Password))){ 
             res.status(401).render('login', {
                 message: 'Username or Password is incorrect!'
