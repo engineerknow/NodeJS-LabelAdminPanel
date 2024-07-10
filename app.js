@@ -3,11 +3,15 @@ const express = require('express')
 const app = express() 
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
+const path = require('path');
+const hbs = require('hbs');
 
 const Port = 8000
 
 // DotENV Confing
 dotenv.config({ path: './env'})
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
+
 
 // Static files
 app.use(express.static('assets'))

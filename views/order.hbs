@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>© INDEXCOPY NODEJS</title>
+    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.css">
+    <link rel="stylesheet" href="css/shared/style.css">
+    <!-- endinject -->
+    <!-- Layout style -->
+    <link rel="stylesheet" href="css/demo_1/style.css">
+    <!-- Layout style -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+</head>
+
+<body class="header-fixed">
+    {{> header}} <!-- Include the header partial -->
+    <div class="page-body">
+        {{> sidebar}} <!-- Include the sidebar partial -->
+
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="content-viewport">
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <h1>Orders</h1>
+                            <table id="ordersTable" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Order point</th>
+                                        <th>Customer Name</th>
+                                        <th>Total Price</th>
+                                        <th>Order Date</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="vendors/js/core.js"></script>
+<!-- endinject -->
+<!-- Vendor Js For This Page Ends-->
+<script src="vendors/apexcharts/apexcharts.min.js"></script>
+<script src="vendors/chartjs/Chart.min.js"></script>
+<script src="js/charts/chartjs.addon.js"></script>
+<!-- Vendor Js For This Page Ends-->
+<!-- build:js -->
+<script src="js/template.js"></script>
+<script src="js/dashboard.js"></script>
+<!-- endbuild -->
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#ordersTable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "/api/orders",
+                "type": "GET"
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "poinOrder" },
+                { "data": "customerName" },
+                { "data": "priceOrder" },
+                { "data": "created_at" }
+            ]
+        });
+    });
+</script>
+</body>
+
+</html>
